@@ -1,6 +1,6 @@
 Summary:	ABI compliance checker
 Name:		abi-compliance-checker
-Version:	1.0.0
+Version:	1.1
 Release:	%mkrel 1
 Group:		Development/Other
 License:	GPL
@@ -43,4 +43,3 @@ rm -rf %{buildroot}
 %defattr(-,root,root,-)
 %doc LICENSE
 %{_bindir}/abi-compliance-checker
-
