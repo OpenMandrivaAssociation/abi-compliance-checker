@@ -1,6 +1,6 @@
 Summary:	ABI compliance checker
 Name:		abi-compliance-checker
-Version:	1.1
+Version:	1.6
 Release:	%mkrel 1
 Group:		Development/Other
 License:	GPL
@@ -27,6 +27,7 @@ versions on different linux distributions.
 %prep
 
 %setup -q
+chmod 644 abi-compliance-checker.pl LICENSE
 
 %build
 
