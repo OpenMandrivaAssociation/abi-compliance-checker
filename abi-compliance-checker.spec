@@ -1,6 +1,6 @@
 Summary:	ABI compliance checker
 Name:		abi-compliance-checker
-Version:	1.6
+Version:	1.12
 Release:	%mkrel 1
 Group:		Development/Other
 License:	GPL
