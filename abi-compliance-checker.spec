@@ -1,7 +1,7 @@
 Summary:	ABI compliance checker
 Name:		abi-compliance-checker
 Version:	1.12
-Release:	%mkrel 1
+Release:	%mkrel 2
 Group:		Development/Other
 License:	GPL
 URL:		http://ispras.linux-foundation.org/index.php/ABI_compliance_checker
