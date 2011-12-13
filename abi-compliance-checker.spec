@@ -1,46 +1,47 @@
-Summary:	ABI compliance checker
+Summary:	API/ABI compatibility checker for C/C++ libraries
 Name:		abi-compliance-checker
-Version:	1.12
-Release:	%mkrel 2
+Version:	1.96
+Release:	%mkrel 1
 Group:		Development/Other
-License:	GPL
-URL:		http://ispras.linux-foundation.org/index.php/ABI_compliance_checker
-Source0:	http://ispras.linux-foundation.org/images/b/ba/Abi-compliance-checker-%{version}.tar.gz
+License:	GPLv1+ or LGPLv2+
+URL:		http://forge.ispras.ru/projects/abi-compliance-checker
+Source0:	http://forge.ispras.ru/attachments/download/1277/abi-compliance-checker-%{version}.tar.gz
 Requires:	gcc
 Requires:	binutils
 BuildArch:	noarch
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 %description
-ABI-compliance-checker is a lightweight tool for checking backward binary
-compatibility of shared C/C++ libraries in OS Linux. It checks interface
-signatures and data type definitions in two library versions (headers and
-shared objects) and searches differences that may lead to incompatibility
-according to ABI standards. Breakage of the compatibility may result in
-crashing or incorrect behavior of applications built with an old version of
-a library when it is running with a new one. ABI-compliance-checker was
-intended for library developers that are interested in ensuring backward
-binary compatibility. Also ABI-compliance-checker may be used for checking
-forward binary compatibility and compliance checking of the same library
-versions on different linux distributions.
+ABI Compliance Checker (ACC) is a tool for checking backward binary
+compatibility of a shared C/C++ library API. The tool checks header
+files and shared libraries of old and new versions and analyzes changes
+in Application Binary Interface (ABI=API+compiler ABI) that may break
+binary compatibility: changes in calling stack, v-table changes, removed
+symbols, etc. Binary incompatibility may result in crashing or incorrect
+behavior of applications built with an old version of the library if
+they run on a new one. The tool is intended for library developers and
+operating system maintainers who are interested in ensuring binary
+compatibility, i.e. allow old applications to run with newer library
+versions without the need to recompile.
 
 %prep
 
 %setup -q
-chmod 644 abi-compliance-checker.pl LICENSE
+chmod -x LICENSE.txt
 
 %build
+# Nothing to build.
 
 %install
 rm -rf %{buildroot}
-
-install -d %{buildroot}%{_bindir}
-install -m0755 abi-compliance-checker.pl %{buildroot}%{_bindir}/abi-compliance-checker
+mkdir -p %{buildroot}%{_prefix}
+perl Makefile.pl -install --prefix=%{_prefix} --destdir=%{buildroot}
 
 %clean
 rm -rf %{buildroot}
 
 %files
 %defattr(-,root,root,-)
-%doc LICENSE
-%{_bindir}/abi-compliance-checker
+%doc LICENSE.txt doc/
+%{_bindir}/%{name}
+%{_datadir}/%{name}
