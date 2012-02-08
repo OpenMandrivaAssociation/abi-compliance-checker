@@ -1,13 +1,14 @@
 Summary:	API/ABI compatibility checker for C/C++ libraries
 Name:		abi-compliance-checker
-Version:	1.96
+Version:	1.96.7
 Release:	%mkrel 1
 Group:		Development/Other
 License:	GPLv1+ or LGPLv2+
 URL:		http://forge.ispras.ru/projects/abi-compliance-checker
-Source0:	http://forge.ispras.ru/attachments/download/1277/abi-compliance-checker-%{version}.tar.gz
-Requires:	gcc
+Source0:	http://forge.ispras.ru/attachments/download/1433/abi-compliance-checker-%{version}.tar.gz
+Requires:	gcc-c++
 Requires:	binutils
+BuildRequires:  help2man
 BuildArch:	noarch
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
@@ -25,9 +26,14 @@ compatibility, i.e. allow old applications to run with newer library
 versions without the need to recompile.
 
 %prep
-
 %setup -q
-chmod -x LICENSE.txt
+chmod 0644 LICENSE.txt
+chmod 0755 %{name}.pl
+cp %{name}.pl %{name}
+# Generate man page
+help2man -N --no-discard-stderr --help-option="--info" -o %{name}.1 ./%{name}
+sed -i 's/\(.\)/\n\1/' %{name}.1
+sed -i 's/ABI "1"/ACC "1"/' %{name}.1
 
 %build
 # Nothing to build.
@@ -35,6 +41,8 @@ chmod -x LICENSE.txt
 %install
 rm -rf %{buildroot}
 mkdir -p %{buildroot}%{_prefix}
+mkdir -p %{buildroot}%{_mandir}/man1
+install -m 0644 %{name}.1 %{buildroot}%{_mandir}/man1
 perl Makefile.pl -install --prefix=%{_prefix} --destdir=%{buildroot}
 
 %clean
@@ -42,6 +50,7 @@ rm -rf %{buildroot}
 
 %files
 %defattr(-,root,root,-)
-%doc LICENSE.txt doc/
+%{_mandir}/man1/*
+%doc LICENSE.txt doc/*
 %{_bindir}/%{name}
 %{_datadir}/%{name}
