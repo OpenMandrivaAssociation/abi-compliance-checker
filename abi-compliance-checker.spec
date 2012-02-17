@@ -1,11 +1,11 @@
 Summary:	API/ABI compatibility checker for C/C++ libraries
 Name:		abi-compliance-checker
-Version:	1.96.7
+Version:	1.96.8
 Release:	%mkrel 1
 Group:		Development/Other
 License:	GPLv1+ or LGPLv2+
-URL:		http://forge.ispras.ru/projects/abi-compliance-checker
-Source0:	http://forge.ispras.ru/attachments/download/1433/abi-compliance-checker-%{version}.tar.gz
+URL:		http://ispras.linux-foundation.org/index.php/ABI_compliance_checker
+Source0:	http://forge.ispras.ru/attachments/download/1475/abi-compliance-checker-%{version}.tar.gz
 Requires:	gcc-c++
 Requires:	binutils
 BuildRequires:  help2man
