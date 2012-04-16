@@ -1,39 +1,34 @@
 Summary:	API/ABI compatibility checker for C/C++ libraries
 Name:		abi-compliance-checker
-Version:	1.96.8
-Release:	%mkrel 1
+Version:	1.97.4
+Release:	1
 Group:		Development/Other
 License:	GPLv1+ or LGPLv2+
 URL:		http://ispras.linux-foundation.org/index.php/ABI_compliance_checker
-Source0:	http://forge.ispras.ru/attachments/download/1475/abi-compliance-checker-%{version}.tar.gz
+Source0:	https://github.com/lvc/abi-compliance-checker/downloads/abi-compliance-checker-%{version}.tar.gz
 Requires:	gcc-c++
 Requires:	binutils
-BuildRequires:  help2man
 BuildArch:	noarch
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 %description
 ABI Compliance Checker (ACC) is a tool for checking backward binary
-compatibility of a shared C/C++ library API. The tool checks header
-files and shared libraries of old and new versions and analyzes changes
-in Application Binary Interface (ABI=API+compiler ABI) that may break
-binary compatibility: changes in calling stack, v-table changes, removed
-symbols, etc. Binary incompatibility may result in crashing or incorrect
-behavior of applications built with an old version of the library if
-they run on a new one. The tool is intended for library developers and
-operating system maintainers who are interested in ensuring binary
-compatibility, i.e. allow old applications to run with newer library
-versions without the need to recompile.
+and source-level compatibility of a C/C++ library. The tool checks
+header files and shared libraries of old and new versions and analyzes
+changes in API and ABI (ABI=API+compiler ABI) that may break binary
+and/or source compatibility: changes in calling stack, v-table changes,
+removed symbols, renamed fields, etc. Binary incompatibility may result
+in crashing or incorrect behavior of applications built with an old
+version of a library if they run on a new one. Source incompatibility
+may result in recompilation errors with a new library version. The
+tool is intended for developers of software libraries and maintainers
+of operating systems who are interested in ensuring backward
+compatibility, i.e. allow old applications to run or to be recompiled
+with newer library versions.
 
 %prep
 %setup -q
-chmod 0644 LICENSE.txt
-chmod 0755 %{name}.pl
-cp %{name}.pl %{name}
-# Generate man page
-help2man -N --no-discard-stderr --help-option="--info" -o %{name}.1 ./%{name}
-sed -i 's/\(.\)/\n\1/' %{name}.1
-sed -i 's/ABI "1"/ACC "1"/' %{name}.1
+chmod 0644 LICENSE README
 
 %build
 # Nothing to build.
@@ -41,8 +36,6 @@ sed -i 's/ABI "1"/ACC "1"/' %{name}.1
 %install
 rm -rf %{buildroot}
 mkdir -p %{buildroot}%{_prefix}
-mkdir -p %{buildroot}%{_mandir}/man1
-install -m 0644 %{name}.1 %{buildroot}%{_mandir}/man1
 perl Makefile.pl -install --prefix=%{_prefix} --destdir=%{buildroot}
 
 %clean
@@ -50,7 +43,6 @@ rm -rf %{buildroot}
 
 %files
 %defattr(-,root,root,-)
-%{_mandir}/man1/*
-%doc LICENSE.txt doc/*
+%doc LICENSE README doc/*
 %{_bindir}/%{name}
 %{_datadir}/%{name}
