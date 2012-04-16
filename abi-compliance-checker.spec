@@ -1,10 +1,10 @@
 Summary:	API/ABI compatibility checker for C/C++ libraries
 Name:		abi-compliance-checker
 Version:	1.97.4
-Release:	1
+Release:	2
 Group:		Development/Other
 License:	GPLv1+ or LGPLv2+
-URL:		http://ispras.linux-foundation.org/index.php/ABI_compliance_checker
+URL:		http://ispras.linuxbase.org/index.php/ABI_compliance_checker
 Source0:	https://github.com/lvc/abi-compliance-checker/downloads/abi-compliance-checker-%{version}.tar.gz
 Requires:	gcc-c++
 Requires:	binutils
@@ -43,6 +43,6 @@ rm -rf %{buildroot}
 
 %files
 %defattr(-,root,root,-)
-%doc LICENSE README doc/*
+%doc LICENSE README doc/
 %{_bindir}/%{name}
 %{_datadir}/%{name}
