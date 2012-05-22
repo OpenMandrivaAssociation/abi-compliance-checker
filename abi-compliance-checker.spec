@@ -1,7 +1,7 @@
 Summary:	API/ABI compatibility checker for C/C++ libraries
 Name:		abi-compliance-checker
-Version:	1.97.4
-Release:	2
+Version:	1.97.5
+Release:	1
 Group:		Development/Other
 License:	GPLv1+ or LGPLv2+
 URL:		http://ispras.linuxbase.org/index.php/ABI_compliance_checker
