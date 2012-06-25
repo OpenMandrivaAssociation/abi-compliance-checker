@@ -1,6 +1,6 @@
 Summary:	API/ABI compatibility checker for C/C++ libraries
 Name:		abi-compliance-checker
-Version:	1.97.6
+Version:	1.98.1
 Release:	1
 Group:		Development/Other
 License:	GPLv1+ or LGPLv2+
