@@ -6,8 +6,8 @@ Group:		Development/Other
 License:	GPLv1+ or LGPLv2+
 URL:		http://ispras.linuxbase.org/index.php/ABI_compliance_checker
 Source0:	https://github.com/lvc/abi-compliance-checker/archive/%{version}/%{name}-%{version}.tar.gz
-Requires:	gcc-c++
-Requires:	binutils
+Requires: gcc-c++
+Requires: binutils
 Requires: ctags
 
 BuildArch:	noarch
@@ -30,7 +30,7 @@ with newer library versions.
 
 %prep
 %setup -q
-chmod 0644 LICENSE README
+chmod 0644 LICENSE README.md
 
 %build
 # Nothing to build.
