@@ -1,14 +1,15 @@
 Summary:	API/ABI compatibility checker for C/C++ libraries
 Name:		abi-compliance-checker
-Version:	1.98.5
-Release:	2
+Version:	2.3
+Release:	1
 Group:		Development/Other
 License:	GPLv1+ or LGPLv2+
 URL:		http://ispras.linuxbase.org/index.php/ABI_compliance_checker
-Source0:	https://github.com/lvc/abi-compliance-checker/downloads/abi-compliance-checker-%{version}.tar.gz
-Requires:	gcc-c++
-Requires:	binutils
-Requires:       ctags
+Source0:	https://github.com/lvc/abi-compliance-checker/archive/%{version}/%{name}-%{version}.tar.gz
+Requires: gcc-c++
+Requires: binutils
+Requires: ctags
+
 BuildArch:	noarch
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
@@ -29,7 +30,7 @@ with newer library versions.
 
 %prep
 %setup -q
-chmod 0644 LICENSE README
+chmod 0644 LICENSE README.md
 
 %build
 # Nothing to build.
@@ -44,6 +45,6 @@ rm -rf %{buildroot}
 
 %files
 %defattr(-,root,root,-)
-%doc LICENSE README doc/
+%doc LICENSE README.md doc/
 %{_bindir}/%{name}
 %{_datadir}/%{name}
