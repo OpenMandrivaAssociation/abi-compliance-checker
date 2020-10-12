@@ -45,6 +45,6 @@ rm -rf %{buildroot}
 
 %files
 %defattr(-,root,root,-)
-%doc LICENSE README doc/
+%doc LICENSE README.md doc/
 %{_bindir}/%{name}
 %{_datadir}/%{name}
