@@ -4,7 +4,7 @@ Version:	2.3
 Release:	1
 Group:		Development/Other
 License:	GPLv1+ or LGPLv2+
-URL:		http://ispras.linuxbase.org/index.php/ABI_compliance_checker
+URL:		https://ispras.linuxbase.org/index.php/ABI_compliance_checker
 Source0:	https://github.com/lvc/abi-compliance-checker/archive/%{version}/%{name}-%{version}.tar.gz
 Requires: gcc-c++
 Requires: binutils
